@@ -30,7 +30,7 @@ build1:
     - echo HERE
     - ls -l
     - netstat -anp
-    - service docker status
+    - ps -ef 
     - ls -l /var/run
     - docker --version
     - docker build -t pknw1/utorrent-test ./docker-utorrent
