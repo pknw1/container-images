@@ -15,7 +15,6 @@ image: docker:git
 #  - echo "For example you might do some cleanup here"
 variables:
   DOCKER_TLS_CERTDIR: "/certs"
-  DOCKER_HOST: tcp://docker:2377
 
 services:
   - docker:dind
@@ -24,7 +23,6 @@ services:
 build1:
   stage: build
   script:
-    - export DOCKER_HOST="tcp://localhost:2377"
     - PWD=$(pwd)
     - chmod +x ./buildall.sh
     - echo HERE
