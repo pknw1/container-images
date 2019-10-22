@@ -26,4 +26,6 @@ build1:
     - echo HERE
     - ls -l
     - docker --version
+    - sudo usermod -aG docker gitlab-runner
+    - sudo -u gitlab-runner -H docker info
     - docker build -t pknw1/docker-utorrent ./docker-utorrent/
