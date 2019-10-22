@@ -1,0 +1,1 @@
+docker run -d --restart=always --network plex --ip 10.0.17.39 --name=tautulli -e TZ='Europe/London' -e PGID=666 -e PUID=666 -v /home/docker/tautulli:/config -v  /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Logs:/plex_logs:ro -p 19999:8181 tautulli/tautulli 

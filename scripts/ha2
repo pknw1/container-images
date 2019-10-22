@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --name=haproxy2  -p 9999:80 -v /etc/ssl:/etc/ssl:ro -v /home/docker/haproxy2/:/usr/local/etc/haproxy haproxy

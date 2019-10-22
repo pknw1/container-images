@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --name=plexrequests -e PGID=666 -e PUID=666 -p 3000:3000 -v /aws:/aws -v /home/docker/plexrequests:/config linuxserver/plexrequests

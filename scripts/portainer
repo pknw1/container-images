@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --name=portainer --network plex --ip 10.0.17.5 -v /:/plex.pknw1.co.uk -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/portainer:/data portainer/portainer

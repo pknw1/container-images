@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --name=nginx --label "traefik.enable=true" -v /etc/ssl:/etc/ssl:ro -v /home/docker/nginx/:/etc/nginx nginx

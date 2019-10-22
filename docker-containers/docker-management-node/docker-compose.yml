@@ -1,0 +1,148 @@
+version: '3'
+
+services:
+  reverse-proxy:
+    image: traefik 
+    container_name: traefik
+    restart: unless-stopped
+    command: --api --docker 
+    ports:
+      - "127.0.0.1:30080:80"     # The HTTP port
+      - "127.0.0.1:38080:8080" # The Web UI (enabled by --api)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can L
+      - ${PWD}/traefik.toml:/etc/traefik/traefik.toml
+    
+  ut:
+    image: ekho/utorrent
+    container_name: utorrent
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - GUID=${GUID}
+    volumes:
+      - ${CONFIG_BASE}/utorrent/settings:/utorrent/settings
+      - ${CONFIG_BASE}/utorrent/data:/utorrent/data
+      - /aws:/aws
+    labels:
+      - "traefik.frontend.rule=Host:utorrent.pknw1.co.uk"
+      - "traefik.port=8080"
+      - "traefik.enable=true"
+
+  htpcmanager:
+    image: linuxserver/htpcmanager 
+    container_name: htpc
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - GUID=${GUID}
+    volumes:
+      - ${CONFIG_BASE}/htpc:/config
+      - /aws:/aws
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.frontend.rule=Host:movies.pknw1.co.uk"
+      - "traefik.port=8085"
+      - "traefik.enable=true"
+
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - GUID=${GUID}
+    volumes:
+      - ${CONFIG_BASE}/jellyfin/config/:/config
+      - ${CONFIG_BASE}/jellyfin/cache/:/cache
+      - /aws:/aws
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.frontend.rule=Host:watch.pknw1.co.uk"
+      - "traefik.port=8096"
+      - "traefik.enable=true"
+  jackett:
+    image: linuxserver/jackett 
+    container_name: jackett
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - GUID=${GUID}
+    volumes:
+      - ${CONFIG_BASE}/jackett/:/config
+      - /aws:/aws
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.frontend.rule=Host:jackett.pknw1.co.uk"
+      - "traefik.port=9117"
+      - "traefik.enable=true"
+
+  radarr:
+    image: linuxserver/radarr 
+    container_name: radarr
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - GUID=${GUID}
+    volumes:
+      - ${CONFIG_BASE}/radarr/:/config
+      - /sdb/movies:/movies
+      - /aws:/aws
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.frontend.rule=Host:radarr.pknw1.co.uk"
+      - "traefik.port=7878"
+      - "traefik.enable=true"
+
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - GUID=${GUID}
+    volumes:
+      - ${CONFIG_BASE}/sonarr/:/config
+      - /aws:/aws
+      - /sda/tv:/tv
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.frontend.rule=Host:sonarr.pknw1.co.uk"
+      - "traefik.port=8989"
+      - "traefik.enable=true"
+
+  dns:
+    image: diginc/pi-hole
+    container_name: dns
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - GUID=${GUID}
+      - ServerIP=91.121.78.68
+    volumes:
+      - ${CONFIG_BASE}/pihole/etc/:/etc/pihole
+      - ${CONFIG_BASE}/pihole/dnsmasq.d:/etc/dnsmasq.d
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.frontend.rule=Host:pihole.pknw1.co.uk"
+      - "traefik.port=80"
+      - "traefik.enable=true"
+    cap_add:
+      - NET_ADMIN
+
+  www:
+    image: httpd
+    container_name: apache2
+    restart: unless-stopped
+    environment: 
+      - PUID=${PUID}
+      - GUID=${GUID}
+    volumes:
+      - ${CONFIG_BASE}/apache2/conf:/usr/local/apache2/conf
+      - ${CONFIG_BASE}/apache2/htdocs:/usr/local/apache2/htdocs
+      - /aws:/aws:ro
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.frontend.rule=Host:download.pknw1.co.uk,www.pknw1.co.uk,kelleher.pknw1.co.uk,ijustgoogleeverything.co.uk,ijustgoogleeverything.online,paulkelleher.co.uk,vnc.pknw1.co.uk"
+      - "traefik.port=80"
+      - "traefik.enable=true"

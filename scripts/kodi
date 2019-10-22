@@ -1,0 +1,3 @@
+#!/bin/bash
+docker run -d --restart=always --network plex --ip 10.0.17.97 --name=kodi -e PGID=666 -e PUID=666 -v /aws/movies:/movies -v /aws/tv:/tv -v /home/docker/kodi:/config/.kodi -p 9777:9777/udp linuxserver/kodi-headless
+

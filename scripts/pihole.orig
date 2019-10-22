@@ -1,0 +1,13 @@
+#!/bin/bash
+#docker run -d --restart=unless-stopped --name=pihole -e VIRTUAL_HOST=plex -e HOST_GID=666 -e HOST_UID=666 -p 53:53/tcp -p 53:53/udp -p 67:67/udp -p 45380:80 -p 45343:443 -e ServerIP="10.0.0.53" --dns 8.8.8.8 --cap-add=NET_ADMIN -v /home/docker/pihole/etc:/etc/pihole -v /home/docker/pihole/dnsmasq.d:/etc/dnsmasq.d diginc/pi-hole
+
+
+if [[ $(docker ps -a -f name=pihole|grep -v CREAT) ]]
+then
+	echo "existing container - remove and re-check"
+	docker rm -f pihole
+	exec /home/docker/scripts/pihole 
+else
+	docker run -d --restart=unless-stopped --name=pihole -e VIRTUAL_HOST=plex -e HOST_GID=666 -e HOST_UID=666 -p 53:53/tcp -p 53:53/udp -p 67:67/udp -p 45380:80 -p 45343:443 -e ServerIP="10.0.0.53" --dns 8.8.8.8 --cap-add=NET_ADMIN -v /home/docker/pihole/etc:/etc/pihole -v /home/docker/pihole/dnsmasq.d:/etc/dnsmasq.d diginc/pi-hole
+	exit 0
+fi

@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --network plex --ip 10.0.17.9 --name=radarr -e PGID=666 -e PUID=666 -v /sdb/movies:/movies/ -v /aws:/aws -v /home/docker/nas:/nas -v /home/docker/radarr:/config linuxserver/radarr

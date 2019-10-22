@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --name=nextcloud -e PUID=666 -e PGID=666 -v /home/docker/nextcloud/config:/config -v /home/docker/nextcloud/data:/data -v /aws:/aws -v /cloud:/cloud -v /:/host:ro -e VIRTUAL_HOST=cloud.pknw1plex.co.uk -e VIRTUAL_PORT=443 -p 555:443 linuxserver/nextcloud

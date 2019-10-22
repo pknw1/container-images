@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --network plex --ip 10.0.17.180 --name=www-willey -e PUID=666 -e PGID=666 -v /home/docker/www-willey/content:/www  fnichol/uhttpd

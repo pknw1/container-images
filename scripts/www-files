@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --network plex --ip 10.0.17.183 --name=www-fs -e PUID=666 -e PGID=666 -v /aws/movies:/www/movies:ro -v /aws/software:/www/software:ro -v /aws/tv:/www/tv:ro  fnichol/uhttpd

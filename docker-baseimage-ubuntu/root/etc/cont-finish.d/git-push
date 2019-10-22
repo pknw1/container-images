@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv bash
+echo pk
+
+umount /config || umount -fl /config
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+cd /.config
+git add . && git commit -m "$(date)" && git push
+
+exit 0
+
+

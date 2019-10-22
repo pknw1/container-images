@@ -1,0 +1,35 @@
+{
+  "Services": {
+    "executor": {
+      "Image": "puckel/azkaban-executor@sha256:20dad8ddb8c187738f586ccffa0cf1581525161d3edb872f6928e6fdcba44112",
+      "Networks": []
+    },
+    "mariadb": {
+      "Env": [
+        "MYSQL_USER=azkaban",
+        "MYSQL_PASSWORD=azkaban",
+        "MYSQL_DATABASE=azkaban",
+        "MYSQL_ROOT_PASSWORD=wootwoot"
+      ],
+      "Image": "mariadb@sha256:db6e7bda67ea88efb00ba4ad82cb72dfee8938935914ae0948f6af523d398ca2",
+      "Networks": [],
+      "Ports": [
+        {
+          "Port": 3306,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    "webserver": {
+      "Image": "puckel/azkaban-webserver@sha256:dda56e586a573eba5f8eb2077b22e307c208398d9ca73299da4484c60df24024",
+      "Networks": [],
+      "Ports": [
+        {
+          "Port": 8443,
+          "Protocol": "tcp"
+        }
+      ]
+    }
+  },
+  "Version": "0.1"
+}

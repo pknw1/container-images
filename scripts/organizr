@@ -1,0 +1,2 @@
+docker run -d --restart=always --network plex --ip 10.0.17.41 --name=organizr -e TZ='Europe/London' -e PGID=666 -e PUID=666 -v /home/docker/organizr:/config -p 50080:80 organizrtools/organizr-v2
+

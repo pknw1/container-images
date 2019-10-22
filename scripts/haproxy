@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --name=haproxy --network plex --ip 10.0.17.2 -v /etc/ssl:/etc/ssl:ro -v /home/docker/haproxy/:/usr/local/etc/haproxy haproxy

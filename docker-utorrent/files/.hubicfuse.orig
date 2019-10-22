@@ -1,0 +1,3 @@
+client_id=[Hubic client id for the registered application]
+client_secret=[Hubic client secret for the registered application]
+refresh_token=[A refresh token you got from the script]

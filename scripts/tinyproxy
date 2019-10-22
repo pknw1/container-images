@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --network plex --ip 10.0.17.88 --restart=always --name=tinyproxy -e HOST_GID=666 -e HOST_UID=666 dannydirect/tinyproxy:latest ANY

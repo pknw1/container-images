@@ -1,0 +1,20 @@
+mysql:
+    image: tutum/mysql
+    restart: always
+    ports:
+        - "3306:3306"
+    environment:
+        - MYSQL_USER=root
+        - MYSQL_PASS=password
+        - ON_CREATE_DB=pinball
+
+
+pinball:
+    image: pinball
+    restart: always
+    ports:
+        - "8082:8080"
+    links:
+        - mysql:mysql
+    
+

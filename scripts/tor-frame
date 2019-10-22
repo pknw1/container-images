@@ -1,0 +1,24 @@
+#!/bin/bash
+docker run -d --restart unless-stopped --name torframe -v $(pwd)/web:/web strm/tor-hiddenservice-nginx || docker rm -f torframe 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

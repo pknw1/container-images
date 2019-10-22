@@ -1,0 +1,4 @@
+#!/bin/bash
+docker run -d --restart=always --network plex --ip 10.0.17.182 --name=fstv -v /aws/tv/:/var/www:ro pknw1/fileserver
+docker run -d --restart=always --network plex --ip 10.0.17.181 --name fsmovies -v /aws/movies:/var/www:ro pknw1/fileserver 
+

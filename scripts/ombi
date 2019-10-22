@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --name=ombi -e PGID=666 -e PUID=666 -p 3579:3579 -v /aws:/aws -v /home/docker/ombi:/config linuxserver/ombi

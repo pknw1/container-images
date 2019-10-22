@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --network plex --ip 10.0.17.80 --name=www-portal -e PUID=666 -e PGID=666 -v /home/docker/www-portal-pknw1/content:/www -v /home/docker/nas:/www/nas  fnichol/uhttpd

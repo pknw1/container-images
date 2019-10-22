@@ -1,0 +1,3 @@
+#!/bin/bash
+docker run -d -p 5050:5050 --network plex --ip 10.0.17.6 --restart=always --name=flexget -e GUID=666 -e PGID=666 -v /aws:/aws -v /home/docker/flexget/:/config -e WEB_PASSWD=7111     cpoppema/docker-flexget
+

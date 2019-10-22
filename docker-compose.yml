@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  mysql:
+    image: mariadb:latest
+    container_name: phpipam_mysql_1
+    environment:
+      - MYSQL_ROOT_PASSWORD=pk020668000
+    restart: unless-stopped
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  ipam:
+    depends_on:
+      - mysql
+    image: scrubs/phpipam-docker:latest
+    environment:
+      - MYSQL_ENV_MYSQL_USER=root
+      - MYSQL_ENV_MYSQL_PASSWORD=pk020668000
+      - MYSQL_ENV_MYSQL_HOST=phpipam_mysql_1
+    restart: unless-stopped
+    ports:
+      - "87:80"

@@ -1,0 +1,13 @@
+#!/usr/bin/with-contenv bash
+
+if [[ $(date +%M) == '00' ]] || [[ -f /firstrun ]]; then 
+
+cd /
+git checkout -b config
+git add /config/* || echo "could no git add $(date)"
+git commit -m "$(date)" || echo "git commit failed"
+git push -u origin config
+
+if [[ -f /firstrun ]]; then rm /firstrun; fi
+sleep 60
+fi

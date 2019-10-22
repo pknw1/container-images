@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bash
+
+if [[ $(date +%M) == '00' ]]; then 
+
+cd /
+git add . || echo "could no git add $(date)"
+git commit -m "$(date)" || echo "git commit failed"
+git push
+sleep 60
+fi

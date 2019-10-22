@@ -1,0 +1,12 @@
+#!/usr/bin/with-contenv bash
+
+if [[ $(date +%M) == '47' ]]; then 
+
+cd /config
+echo $(date) >  /sync-in-porgress
+git add . || echo "could no git add $(date)"
+git commit -m "$(date)" || echo "git commit failed"
+git push || echo "push failed"
+rm /sync-in-progress
+sleep 60
+fi

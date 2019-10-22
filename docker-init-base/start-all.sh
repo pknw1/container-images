@@ -1,0 +1,2 @@
+for services in $(ls ./services); do  docker run -d  --name $services -e VIRTUAL_HOST=$(echo $services | head -c-2).bmw.advisor.smartfocus.com -e VIRTUAL_PORT=8080 -e CATALINA_OPTS="$CATALINA_OPTS -Dpersonalisation.config.home=file:///opt/personalisation-config" -v `pwd`/services/$services/config/:/opt/personalisation-config/$(echo $services | head -c-2) -v `pwd`/services/$services/webapps:/webapps eb05f7841835;  done
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC
+	"-//APACHE//DTD LOG4J 1.2//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration>
+	<!-- ======================================================== -->
+	<!-- APPENDERS -->
+	<!-- ======================================================== -->
+	<appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${catalina.home}/logs/event.log" />
+		<param name="MaxBackupIndex" value="4" />
+		<param name="MaxFileSize" value="50MB" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%-5p MSG[%m] CATEGORY[%c] TIMESTAMP[%d{ISO8601}] THREAD[%t] %n" />
+		</layout>
+	</appender>
+
+	<!-- ======================================================== -->
+	<!-- CATEGORIES -->
+	<!-- ======================================================== -->
+	<category name="com.predictiveintent">
+		<priority value="INFO" />
+	</category>
+	<category name="com.smartfocus">
+		<priority value="INFO" />
+	</category>
+
+	<!-- ======================================================== -->
+	<!-- 3RD PARTY SOFTWARE -->
+	<!-- ======================================================== -->
+	<category name="org.springframework">
+		<priority value="INFO" />
+	</category>
+
+	<!-- ======================================================== -->
+	<!-- ROOT -->
+	<!-- ======================================================== -->
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="FILE" />
+	</root>
+</log4j:configuration>

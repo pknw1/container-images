@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ -z $CONFIG_PATH ]; then
+  export CONFIG_PATH=/mnt/config.yaml
+fi
+
+sleep 5
+PYTHONPATH=. python -m pinball.run_pinball -c $CONFIG_PATH -m master &
+sleep 25
+PYTHONPATH=. python -m pinball.run_pinball -c $CONFIG_PATH -m ui &
+sleep 5
+PYTHONPATH=. python -m pinball.run_pinball -c $CONFIG_PATH -m scheduler &
+sleep 5
+PYTHONPATH=. python -m pinball.run_pinball -c $CONFIG_PATH -m workers
+

@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --network plex --ip 10.0.17.89 --name=www-kelleheronline -e PUID=666 -e PGID=666 -v /home/docker/www-kelleheronline/content:/www -v /home/docker/nas:/www/nas  fnichol/uhttpd

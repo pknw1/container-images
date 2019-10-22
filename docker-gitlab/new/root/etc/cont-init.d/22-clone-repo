@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+REPO=$(hostname)
+GITUSER=pknw1
+
+ if ! [[ -d /econfig/.git ]] 
+ then
+	 echo crete
+	 echo clone
+ fi
+

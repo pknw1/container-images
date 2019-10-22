@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --name=muximux -e PGID=666 -e PUID=666 -p 6767:80 -v /aws:/aws -v /home/docker/muximux:/config linuxserver/muximux

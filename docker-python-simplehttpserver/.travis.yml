@@ -1,0 +1,33 @@
+language: ruby
+
+sudo: required
+dist: trusty
+group: edge
+
+services:
+  - docker
+
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::8}
+    - REPO=trinitronx/python-simplehttpserver
+
+install:
+  - npm install -g validate-dockerfile
+  - gem install bundler
+  - bundle install --without development
+
+script:
+  - docklint Dockerfile
+  - docker events &
+  - export DOCKER_EVENTS_PID=$!
+  - bundle exec rake spec
+  - kill $DOCKER_EVENTS_PID
+after_success:
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - docker push $REPO
+  - "[ -e \"~/.docker/config.json\" ] && shred -n 30 -u -z ~/.docker/config.json"
+

@@ -1,0 +1,6 @@
+FROM elyase/staticpython
+WORKDIR /var/www/
+RUN mkdir -p /var/www/movies && mkdir /var/www/tv && mkdir /var/www/music && mkdir /var/www/software
+RUN chmod -R 777 /var/www
+EXPOSE 8080
+CMD [ "python", "-m", "SimpleHTTPServer", "8080" ]

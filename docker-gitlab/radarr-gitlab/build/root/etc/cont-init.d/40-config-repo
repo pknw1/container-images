@@ -1,0 +1,26 @@
+#!/usr/bin/with-contenv bash
+
+UMASK_SET=${UMASK_SET:-022}
+
+umask "$UMASK_SET"
+
+if ! [[ -f /root/.ssh/id_rsa ]]; then cp /host/ssh/* /root/.ssh/; fi
+
+git config --global user.email "auto-radarr@pknw1.co.uk"
+git config --global user.name "Auto Radarr"
+
+echo -e "Host gitlab.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
+cd /
+
+#git clone $URL /dev/shm/docker
+#if ! [[ -d /dev/shm/docker/config ]]; then mkdir -p /dev/shm/docker/config && chown abc:abc /dev/shm/docker/config; fi
+#rm -f /config
+#ln -s /dev/shm/docker/config /config
+
+git init && git remote add origin -f $URL
+echo $URL
+git config core.sparsecheckout true
+echo "config/*" > .git/info/sparse-checkout
+git pull --depth=2 origin config
+touch /firstrun

@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d -p 48080:8080 --network plex --ip 10.0.17.6 --restart=always --name=utorrent -e HOST_GID=666 -e HOST_UID=666 -v /aws:/aws -v /home/docker/utorrent/data:/utorrent/data -v /home/docker/utorrent/settings:/utorrent/settings ekho/utorrent

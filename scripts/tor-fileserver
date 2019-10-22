@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart always -v $(pwd)/tor-fileserver/config:/web -v /aws:/aws:ro --name tor-fileserver -v $(pwd)/tor-fileserver/htdocs:/web/www strm/tor-hiddenservice-nginx || docker rm -f tor-fileserver

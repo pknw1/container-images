@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --network plex --name filebrowser -v /home/docker/config/filebrowser:/config -v /home/docker/config/filebrowser/srv:/srv -v /aws/movies:/srv/movies:ro -v /aws/tv:/srv/tv:ro -v /aws/software:/srv/software:ro -v /tmp/filebrowser:/srv/tmp -v /tmp:/tmp pknw1/filebrowser:latest

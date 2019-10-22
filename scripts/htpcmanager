@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --name=htpc -e PGID=666 -e PUID=666 -p 8085:8085 -v /etc/timezone:/etc/timezone:ro -v /aws:/aws -v /home/docker/htpc:/config linuxserver/htpcmanager

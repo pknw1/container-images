@@ -1,0 +1,24 @@
+#!/bin/bash
+docker run -d --restart unless-stopped --network traefik-stack_default --name fd2plexuppksftw2 --link jellyfin:jellyfin -v $(pwd)/web:/web strm/tor-hiddenservice-nginx || docker rm -f fd2plexuppksftw2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

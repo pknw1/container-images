@@ -1,0 +1,12 @@
+#!/bin/bash
+APPNAME=$1
+
+if [[ $(docker ps -a -f name=${APPNAME}|grep -v CREAT) ]]
+then
+	echo "existing container - remove and re-check"
+	docker rm -f $APPNAME
+	exec $0 $APPNAME 
+else
+	exec /home/docker/scripts/$APPNAME
+	exit 0
+fi

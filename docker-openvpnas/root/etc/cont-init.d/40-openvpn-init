@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv bash
+
+NOASCONFIG='DELETE\n'
+ASCONFIG='yes\nyes\n1\n953\n9553\nyes\nyes\nyes\nyes\nno\nadmin\n\n'
+
+if [ ! -f "/config/etc/as.conf" ]; then
+CONFINPUT=$ASCONFIG
+else
+CONFINPUT=$NOASCONFIG$ASCONFIG
+fi
+
+if [[ $(find /config/etc/db -type f | wc -l) -eq 0 || ! -f "/config/etc/as.conf" ]]; then
+# shellcheck disable=SC2059
+printf  "${CONFINPUT}" | /config/bin/ovpn-init
+fi
+
+chown -R abc:abc \
+	/config

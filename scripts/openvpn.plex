@@ -1,0 +1,8 @@
+docker run -d --restart=always  \
+	--name=openvpn \
+	-v /home/docker/openvpn/:/config \
+	-e PGID=666 -e PUID=666 \
+	--network plex --ip 10.0.17.94 \
+	-p 0.0.0.0:943:943 -p 0.0.0.0:9443:9443 -p 0.0.0.0:1194:1194/udp \
+	--privileged \
+	linuxserver/openvpn-as

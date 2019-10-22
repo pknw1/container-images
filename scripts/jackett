@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --network plex --ip 10.0.17.10 --restart=always --name=jackett -e PGID=666 -e PUID=666 -v /aws:/aws -v /home/docker/jackett:/config linuxserver/jackett

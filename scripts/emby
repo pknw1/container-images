@@ -1,0 +1,1 @@
+docker run -d -v /home/docker/emby:/config  -v /aws:/aws --network plex --ip 10.0.17.96 --env UID=666  --env GID=666 --name=emby  emby/embyserver:latest

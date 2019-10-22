@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run -d --restart=always --network plex --ip 10.0.17.8 --name=sonarro -e PGID=666 -e PUID=666 -v /sda/tv:/tv -v /aws:/aws -v /home/docker/sonarr:/config linuxserver/sonarr

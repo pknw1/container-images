@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv bash
+
+if ! [[ -d ~/.ssh ]]; then mkdir ~/.ssh; fi
+if ! [[ -f ~/.ssh/id_rsa ]]; then cp /id_rsa ~/.ssh/id_rsa ; fi

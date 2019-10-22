@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -d --restart=always --name=webhook -e HOST_GID=666 -e HOST_UID=666 -v /home/sceripts:/home/scripts -v /aws:/aws -v /home/docker/webhook:/config -v /var/log:/host/var/log -p 9988:9000 twitter-webhook -verbose -hooks=/config/hooks.json -hotreload

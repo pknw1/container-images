@@ -1,0 +1,19 @@
+#!/bin/bash
+
+REPO=$(hostname)
+GITUSER=pknw1
+TOKEN="fzirczK-zc7h6-xf3gsb"
+
+function create_remote_repo() {
+	echo create remotye
+	echo $TOKEN
+	curl -H "Content-Type:application/json" https://gitlab.com/api/v4/projects?private_token=$TOKEN -d "{ \"name\": \"$REPO\" }"
+}
+
+function create_local_repo() {
+	echo create local repo
+	git clone git@gitlab.com:$GITUSER/$REPO.git /.config
+}
+
+git clone git@gitlab.com:$GITUSER/$REPO /.config || (create_remote_repo && create_local_repo)
+

@@ -1,0 +1,1 @@
+docker run -d --restart=always --network plex --ip 10.0.17.44 --name=owncloud -e PUID=666 -e PGID=666 -v /home/docker/owncloud/config:/var/www/html -v /aws:/aws owncloud

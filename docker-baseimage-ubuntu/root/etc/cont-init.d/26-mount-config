@@ -1,0 +1,4 @@
+#!/bin/bash
+export ENCFS6_CONFIG=/.encfs6.xml
+encfs --extpass=/.password /.config /config
+exit 0
