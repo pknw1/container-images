@@ -30,3 +30,4 @@ build1:
     - ls -l
     - docker --version
     - docker ps
+    - docker build -t pknw1/utorrent-test ./docker-utorrent
