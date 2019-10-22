@@ -3,7 +3,7 @@
 
 # you can delete this line if you're not using Docker
 #
-image: docker:git
+image: docker
 
 #before_script:
 #  - echo "Before script section"
