@@ -21,8 +21,6 @@ stages:
 build1:
   stage: build
   script:
-    - apt-get update && apt-get upgrade -y
-    - 
     - PWD=$(pwd)
     - chmod +x ./buildall.sh
     - ./buildall.sh
