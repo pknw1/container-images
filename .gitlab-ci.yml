@@ -3,7 +3,7 @@
 
 # you can delete this line if you're not using Docker
 #
-image: docker:git
+image: gitlab:dind
 
 #before_script:
 #  - echo "Before script section"
@@ -25,9 +25,4 @@ build1:
   script:
     - PWD=$(pwd)
     - chmod +x ./buildall.sh
-    - echo HERE
-    - ls -l
-    - netstat -anp
-    - ps -ef 
-    - id
-    - docker ps
+    - ./buildall.sh
