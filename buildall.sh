@@ -3,7 +3,6 @@ find $PWD -type f -mindepth 2 -maxdepth 2 -iname Dockerfile | sed 's/\/Dockerfil
 cd $FILE
 TAG=$(echo $FILE | awk -F/ '{print $NF}')
 docker build -t pknw1/$TAG .
-docker push pknw1/$TAG
 cd $PWD
 
 done
