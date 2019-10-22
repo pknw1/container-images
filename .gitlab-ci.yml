@@ -22,4 +22,5 @@ build1:
   stage: build
   script:
     - PWD=$(pwd)
-    - find . -type f -iname Dockerfile
+    - chmod +x ./buildall.sh
+    - ./buildall.sh
