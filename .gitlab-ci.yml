@@ -3,7 +3,7 @@
 
 # you can delete this line if you're not using Docker
 #
-image: docker:18
+image: docker:19.03.4
 
 #before_script:
 #  - echo "Before script section"
@@ -13,6 +13,9 @@ image: docker:18
 #after_script:
 #  - echo "After script section"
 #  - echo "For example you might do some cleanup here"
+DOCKER_TLS_CERTDIR: "/certs"
+DOCKER_HOST=tcp://docker:2375
+
 
 stages:
   - build
@@ -26,6 +29,5 @@ build1:
     - echo HERE
     - ls -l
     - docker --version
-    - usermod -aG docker gitlab-runner
     - docker info
     - docker build -t pknw1/docker-utorrent ./docker-utorrent/
