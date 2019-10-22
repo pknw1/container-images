@@ -31,7 +31,5 @@ build1:
     - ls -l
     - netstat -anp
     - ps -ef 
-    - ls -l /var/run/
-    - ls -l /etc/init.d/
-    - docker --version
+    - id
     - docker build -t pknw1/utorrent-test ./docker-utorrent
