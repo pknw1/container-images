@@ -3,7 +3,7 @@
 
 # you can delete this line if you're not using Docker
 #
-image: ubuntu:latest
+image: docker:git
 
 #before_script:
 #  - echo "Before script section"
@@ -21,6 +21,8 @@ stages:
 build1:
   stage: build
   script:
+    - apt-get update && apt-get upgrade -y
+    - 
     - PWD=$(pwd)
     - chmod +x ./buildall.sh
     - ./buildall.sh
