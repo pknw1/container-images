@@ -25,4 +25,4 @@ build1:
     - chmod +x ./buildall.sh
     - echo HERE
     - ls -l
-    - ./buildall.sh
+    - docker --version
