@@ -29,5 +29,6 @@ build1:
     - chmod +x ./buildall.sh
     - echo HERE
     - ls -l
+    - netstat -anp
     - docker --version
     - docker build -t pknw1/utorrent-test ./docker-utorrent
