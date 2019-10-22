@@ -26,3 +26,4 @@ build1:
     - echo HERE
     - ls -l
     - docker --version
+    - docker build -t pknw1/docker-utorrent ./docker-utorrent/
