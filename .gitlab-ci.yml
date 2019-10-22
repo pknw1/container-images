@@ -15,7 +15,7 @@ image: docker:19.03.4
 #  - echo "For example you might do some cleanup here"
 variables:
   DOCKER_TLS_CERTDIR: "/certs"
-  DOCKER_HOST=tcp://docker:2375
+  DOCKER_HOST: tcp://docker:2375
 
 services:
   - docker:19.03.4-dind
