@@ -3,7 +3,7 @@
 
 # you can delete this line if you're not using Docker
 #
-image: docker
+image: docker:18
 
 #before_script:
 #  - echo "Before script section"
@@ -23,4 +23,6 @@ build1:
   script:
     - PWD=$(pwd)
     - chmod +x ./buildall.sh
+    - echo HERE
+    - ls -l
     - ./buildall.sh
