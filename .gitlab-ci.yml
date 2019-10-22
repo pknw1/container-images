@@ -32,4 +32,4 @@ build1:
     - netstat -anp
     - ps -ef 
     - id
-    - docker build -t pknw1/utorrent-test ./docker-utorrent
+    - docker ps
