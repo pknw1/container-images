@@ -24,10 +24,10 @@ services:
 build1:
   stage: build
   script:
+    - export DOCKER_HOST="tcp://localhost:2375"
     - PWD=$(pwd)
     - chmod +x ./buildall.sh
     - echo HERE
     - ls -l
     - docker --version
-    - docker ps
     - docker build -t pknw1/utorrent-test ./docker-utorrent
